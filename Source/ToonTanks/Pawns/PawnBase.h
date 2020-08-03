@@ -18,6 +18,8 @@ public:
 
 	APawnBase();
 
+    virtual void HandleDestruction();
+
 private:
     // Components
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -41,6 +43,4 @@ protected:
     void RotateTurret(FVector LookAtTarget);
 
     void Fire();
-
-    virtual void HandleDestruction();
 };

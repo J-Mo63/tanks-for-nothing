@@ -22,6 +22,8 @@ public:
 
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+    virtual void HandleDestruction() override;
+
 protected:
 
     virtual void BeginPlay() override;
@@ -46,8 +48,6 @@ private:
 
     FVector MoveDirection;
     FQuat RotationDirection;
-
-    virtual void HandleDestruction() override;
 
     void CalculateMoveInput(float Value);
 

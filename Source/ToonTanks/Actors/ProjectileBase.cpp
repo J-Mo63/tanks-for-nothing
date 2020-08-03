@@ -12,7 +12,7 @@ AProjectileBase::AProjectileBase()
     PrimaryActorTick.bCanEverTick = false;
 
     ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
-    ProjectileMesh->SetupAttachment(RootComponent);
+    RootComponent = ProjectileMesh;
     ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));

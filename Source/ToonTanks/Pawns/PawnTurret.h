@@ -19,6 +19,8 @@ public:
 
     virtual void Tick(float DeltaTime) override;
 
+    virtual void HandleDestruction() override;
+
 protected:
 
     virtual void BeginPlay() override;
@@ -34,8 +36,6 @@ private:
     void CheckFireCondition();
 
     float ReturnDistanceToPlayer();
-
-    virtual void HandleDestruction() override;
 
     FTimerHandle FireRateTimerHandle;
 
