@@ -40,4 +40,8 @@ private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Damage", meta = (AllowPrivateAccess = "true"))
     float Damage = 50.f;
 
+    UFUNCTION()
+    void OnHit(UPrimitiveComponent* HitComp, AActor* Actor,
+               UPrimitiveComponent* OtherHitComp, FVector NormalImpulse,
+               const FHitResult& HitResult);
 };
