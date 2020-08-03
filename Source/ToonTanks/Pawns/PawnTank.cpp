@@ -6,7 +6,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/InputComponent.h"
 #include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
 
+#define OUT
 
 APawnTank::APawnTank()
 {
@@ -23,6 +25,7 @@ void APawnTank::BeginPlay()
 {
     Super::BeginPlay();
 
+    PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 
@@ -31,6 +34,20 @@ void APawnTank::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     Rotate();
     Move();
+
+    if (PlayerControllerRef)
+    {
+        FHitResult Hit;
+        PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, false, OUT Hit);
+        RotateTurret(Hit.ImpactPoint);
+    }
+}
+
+
+void APawnTank::HandleDestruction()
+{
+    Super::HandleDestruction();
+    // TODO Implement this
 }
 
 
@@ -40,6 +57,7 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &APawnTank::CalculateMoveInput);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APawnTank::CalculateRotateInput);
+    PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &APawnTank::Fire);
 }
 
 void APawnTank::CalculateMoveInput(float Value)

@@ -35,6 +35,8 @@ private:
 
     float ReturnDistanceToPlayer();
 
+    virtual void HandleDestruction() override;
+
     FTimerHandle FireRateTimerHandle;
 
     APawnTank* Player;
