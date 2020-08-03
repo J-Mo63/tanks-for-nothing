@@ -47,7 +47,11 @@ void APawnTank::Tick(float DeltaTime)
 void APawnTank::HandleDestruction()
 {
     Super::HandleDestruction();
-    // TODO Implement this
+
+    bIsPlayerAlive = false;
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
 
 
@@ -80,4 +84,9 @@ void APawnTank::Move()
 void APawnTank::Rotate()
 {
     AddActorLocalRotation(RotationDirection, true);
+}
+
+bool APawnTank::GetIsPlayerAlive()
+{
+    return bIsPlayerAlive;
 }

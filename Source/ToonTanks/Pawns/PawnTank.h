@@ -24,6 +24,8 @@ public:
 
     virtual void HandleDestruction() override;
 
+    bool GetIsPlayerAlive();
+
 protected:
 
     virtual void BeginPlay() override;
@@ -43,6 +45,8 @@ private:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
     float RotateSpeed = 100.f;
+
+    bool bIsPlayerAlive = true;
 
     APlayerController* PlayerControllerRef;
 

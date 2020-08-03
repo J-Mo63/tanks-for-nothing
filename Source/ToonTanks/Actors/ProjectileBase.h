@@ -7,6 +7,8 @@
 #include "ProjectileBase.generated.h"
 
 class UProjectileMovementComponent;
+class UParticleSystemComponent;
+class UCameraShake;
 
 UCLASS()
 class TOONTANKS_API AProjectileBase : public AActor
@@ -31,8 +33,23 @@ private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* ProjectileMesh;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    UParticleSystemComponent* TrailParticle = nullptr;
+
+    UPROPERTY(EditAnywhere, Category = "Effects")
+    UParticleSystem* HitParticle = nullptr;
+
     UPROPERTY(EditDefaultsOnly, Category = "Damage")
     TSubclassOf<UDamageType> DamageType;
+
+    UPROPERTY(EditAnywhere, Category = "Effects")
+    USoundBase* LaunchSound;
+
+    UPROPERTY(EditAnywhere, Category = "Effects")
+    USoundBase* HitSound;
+
+    UPROPERTY(EditAnywhere, Category = "Effects")
+    TSubclassOf<UCameraShake> HitShake = nullptr;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = "true"))
     float MovementSpeed = 1300.f;
